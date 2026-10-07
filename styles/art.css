@@ -1,0 +1,247 @@
+/* ───────────────────────── Hero art ───────────────────────── */
+.hart {
+  position: absolute;
+  top: 0;
+  right: max(-2vw, -40px);
+  height: 100%;
+  aspect-ratio: 1;
+  max-width: 60vw;
+  pointer-events: none;
+  z-index: 0;
+}
+.hart__explode {
+  position: absolute;
+  inset: 0;
+}
+.hart__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  will-change: transform;
+}
+.hart__ln {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.hart__ln--faint {
+  stroke: var(--line);
+  opacity: 0.75;
+}
+.hart__ln--dash {
+  stroke: var(--line-2);
+  stroke-dasharray: 2 6;
+  opacity: 0.8;
+}
+.hart__orbit {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.hart__node {
+  fill: var(--blue);
+  stroke: var(--paper);
+  stroke-width: 3;
+  paint-order: stroke;
+}
+.hart__runner {
+  fill: var(--lime);
+  stroke: var(--blue);
+  stroke-width: 1.5;
+}
+.hart__label text {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  fill: var(--ink-2);
+  letter-spacing: 0.02em;
+}
+.hart__label line,
+.hart__dim line {
+  stroke: var(--mute-2);
+  stroke-width: 1;
+}
+.hart__dim line {
+  stroke: var(--blue);
+}
+.hart__dim text {
+  fill: var(--blue);
+  font-size: 13px;
+}
+.hart__coord {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  fill: var(--mute);
+}
+.hart__lime {
+  transform-box: fill-box;
+}
+
+/* ───────────────────────── Isometric stack ───────────────────────── */
+.iso {
+  --open: 0.25;
+  --hover: 0;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.iso__plate {
+  transform: translateY(calc(var(--k) * (var(--open) + var(--hover)) * -28px));
+  transition: transform 1s var(--ease);
+}
+.iso__top {
+  fill: var(--paper-3);
+  stroke: var(--line-2);
+  stroke-width: 1;
+  transition: fill 0.6s var(--ease);
+}
+.iso__side {
+  stroke: var(--line-2);
+  stroke-width: 1;
+  transition: fill 0.6s var(--ease);
+}
+.iso__side--l {
+  fill: var(--blue-soft);
+}
+.iso__side--r {
+  fill: color-mix(in srgb, var(--blue-soft) 55%, var(--paper-3));
+}
+.iso__grid line {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.iso__plate.is-key .iso__top {
+  fill: var(--paper-3);
+  stroke: var(--blue);
+}
+.iso__plate.is-key .iso__side--l {
+  fill: var(--blue);
+}
+.iso__plate.is-key .iso__side--r {
+  fill: var(--blue-2);
+}
+.iso__plate.is-key .iso__grid line {
+  stroke: rgba(255, 255, 255, 0.18);
+}
+.iso__plate.is-active {
+  transform: translateY(calc(var(--k) * (var(--open) + var(--hover)) * -28px - 10px));
+}
+.iso__plate.is-active .iso__top {
+  fill: var(--blue);
+  stroke: var(--blue);
+}
+.iso__plate.is-active .iso__side--l {
+  fill: var(--blue-2);
+}
+.iso__plate.is-active .iso__side--r {
+  fill: var(--blue);
+}
+.iso__plate.is-active .iso__grid line {
+  stroke: rgba(255, 255, 255, 0.22);
+}
+.iso__plate.is-active .iso__name {
+  fill: var(--blue);
+}
+.iso__guides line {
+  stroke: var(--line);
+  stroke-dasharray: 2 5;
+}
+.iso__path {
+  stroke: var(--blue);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 7;
+  animation: iso-flow 1.4s linear infinite;
+}
+@keyframes iso-flow {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+.iso__label line {
+  stroke: var(--mute-2);
+  stroke-width: 1;
+}
+.iso__label circle {
+  fill: var(--blue);
+}
+.iso__name {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  fill: var(--ink);
+  transition: fill 0.4s;
+}
+.iso__num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  fill: var(--blue);
+}
+.iso__detail {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  fill: var(--mute);
+}
+
+/* ───────────────────────── Contribution graph ───────────────────────── */
+.contrib {
+  width: 100%;
+  min-width: 640px;
+  height: auto;
+}
+.contrib__m {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--mute);
+}
+.contrib__c {
+  transform-box: fill-box;
+}
+.contrib__c--0 {
+  fill: var(--blue-ghost);
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.contrib__c--1 { fill: var(--blue); fill-opacity: 0.22; }
+.contrib__c--2 { fill: var(--blue); fill-opacity: 0.45; }
+.contrib__c--3 { fill: var(--blue); fill-opacity: 0.72; }
+.contrib__c--4 { fill: var(--blue); }
+.contrib__c--5 { fill: var(--lime); }
+.contrib__key {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+}
+i.contrib__c--0 { background: var(--blue-ghost); border: 1px solid var(--line); }
+i.contrib__c--1 { background: color-mix(in srgb, var(--blue) 22%, transparent); }
+i.contrib__c--2 { background: color-mix(in srgb, var(--blue) 45%, transparent); }
+i.contrib__c--3 { background: color-mix(in srgb, var(--blue) 72%, transparent); }
+i.contrib__c--4 { background: var(--blue); }
+i.contrib__c--5 { background: var(--lime); margin-left: 10px; }
+
+/* ───────────────────────── Portrait ───────────────────────── */
+.portrait svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.portrait__frame {
+  fill: var(--paper-3);
+  stroke: var(--rule-2);
+}
+.portrait__dot {
+  fill: var(--blue);
+}
+.portrait__crop line {
+  stroke: var(--ink-2);
+  stroke-width: 1;
+}
+.portrait figcaption {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
