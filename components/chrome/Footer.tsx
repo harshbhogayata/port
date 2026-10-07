@@ -92,6 +92,14 @@ export default function Footer() {
     return () => window.clearTimeout(id);
   }, [active, paused, visible]);
 
+  /* ── keep the active tab in view when the strip scrolls (small screens) ── */
+  useEffect(() => {
+    const strip = board.current?.querySelector<HTMLElement>(".fx__tabs");
+    const tab = strip?.children[active] as HTMLElement | undefined;
+    if (!strip || !tab || strip.scrollWidth <= strip.clientWidth) return;
+    strip.scrollTo({ left: tab.offsetLeft - 20, behavior: reducedMotion() ? "auto" : "smooth" });
+  }, [active]);
+
   /* ── draw the active trace, then send a signal along it ── */
   useEffect(() => {
     const el = board.current;

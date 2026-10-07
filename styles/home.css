@@ -113,10 +113,13 @@
     position: relative;
     order: 2;
     right: auto;
-    width: 112%;
+    width: 108%;
     max-width: none;
     height: auto;
-    margin: -6% -6% 0;
+    margin: 24px -4% 0;
+  }
+  .hero__now {
+    padding-right: 0;
   }
   .hart__label {
     display: none;

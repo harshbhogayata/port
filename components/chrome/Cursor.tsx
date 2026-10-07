@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { gsap } from "@/lib/gsap";
 
 /**
@@ -10,6 +11,12 @@ import { gsap } from "@/lib/gsap";
 export default function Cursor() {
   const root = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
+  const pathname = usePathname();
+
+  // The element under the pointer changes on navigation without a pointermove.
+  useEffect(() => {
+    root.current?.classList.remove("has-label", "is-hover", "is-text");
+  }, [pathname]);
 
   useEffect(() => {
     const mq = window.matchMedia("(pointer: fine) and (hover: hover)");
